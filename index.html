@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BaseCamp Channels</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="toast" class="toast hidden"></div>
+
+  <section id="auth-view" class="auth-shell">
+    <div class="auth-card">
+      <div class="brand">⚡ BaseCamp Channels</div>
+      <p class="muted">Your persistent team and personal messaging hub.</p>
+
+      <div class="tabs">
+        <button class="tab active" data-auth-tab="login">Login</button>
+        <button class="tab" data-auth-tab="register">Register</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <input id="login-email" type="email" placeholder="Email address" required />
+        <input id="login-password" type="password" placeholder="Password" required />
+        <button class="primary" type="submit">Sign in</button>
+      </form>
+
+      <form id="register-form" class="auth-form hidden">
+        <input id="register-name" type="text" placeholder="Display name" maxlength="40" required />
+        <input id="register-email" type="email" placeholder="Email address" required />
+        <input id="register-password" type="password" placeholder="Password (6+ characters)" minlength="6" required />
+        <button class="primary" type="submit">Create account</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="app-view" class="app-shell hidden">
+    <header class="topbar">
+      <div>
+        <div class="brand small">⚡ BaseCamp</div>
+        <div id="connection-status" class="status">Connecting…</div>
+      </div>
+      <div class="top-actions">
+        <span id="current-user-label" class="user-label"></span>
+        <button id="logout-btn" class="secondary">Logout</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-section">
+          <div class="section-heading">
+            <span>Groups</span>
+            <button id="create-group-btn" class="icon-button" title="Create group">+</button>
+          </div>
+          <div id="group-list" class="nav-list"></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-heading">
+            <span>Personal messages</span>
+            <button id="new-message-btn" class="icon-button" title="New message">+</button>
+          </div>
+          <div id="dm-list" class="nav-list"></div>
+        </div>
+
+        <div class="sidebar-footer">
+          <button id="profile-btn" class="secondary full">Profile</button>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <div class="workspace-header">
+          <div>
+            <h2 id="conversation-title">Welcome to BaseCamp</h2>
+            <p id="conversation-subtitle" class="muted">Choose a group or personal conversation.</p>
+          </div>
+          <button id="leave-group-btn" class="danger hidden">Leave group</button>
+        </div>
+
+        <div id="messages" class="messages">
+          <div class="empty-state">Select a conversation to start messaging.</div>
+        </div>
+
+        <form id="message-form" class="message-form">
+          <input id="message-input" type="text" placeholder="Select a conversation first…" maxlength="2000" disabled />
+          <button class="primary" type="submit" disabled id="send-message-btn">Send</button>
+        </form>
+      </section>
+
+      <aside class="rightbar">
+        <div class="panel">
+          <h3>Workspace</h3>
+          <p class="muted small-text">Your groups and direct conversations are stored in Firebase.</p>
+          <button id="invite-btn" class="secondary full">Invite / Join by code</button>
+          <button id="members-btn" class="secondary full">View members</button>
+        </div>
+        <div class="panel">
+          <h3>Security</h3>
+          <p class="muted small-text">Firestore rules should be deployed before sharing the app publicly.</p>
+        </div>
+      </aside>
+    </main>
+  </section>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-heading">
+        <h3 id="modal-title">Dialog</h3>
+        <button id="close-modal-btn" class="icon-button">×</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
